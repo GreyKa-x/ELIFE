@@ -12,7 +12,7 @@ public class MyApplication extends Application {
         super.onCreate();
         context = getApplicationContext();
     }
-    public static Context getGlobalContext() {
+    public synchronized static Context getGlobalContext() {
         return context;
     }
 }

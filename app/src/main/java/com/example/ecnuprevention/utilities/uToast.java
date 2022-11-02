@@ -1,5 +1,7 @@
 package com.example.ecnuprevention.utilities;
 
+import android.app.Activity;
+import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
@@ -16,10 +18,14 @@ public class uToast {
             toast = Toast.makeText(MyApplication.getGlobalContext(), str, Toast.LENGTH_LONG);
             toast.show();
         } catch (Exception e) {
-            Looper.prepare();
-            toast = Toast.makeText(MyApplication.getGlobalContext(), str, Toast.LENGTH_LONG);
-            toast.show();
-            Looper.loop();
+            new Handler(Looper.getMainLooper())
+                    .post(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast = Toast.makeText(MyApplication.getGlobalContext(), str, Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    });
         }
 
     }

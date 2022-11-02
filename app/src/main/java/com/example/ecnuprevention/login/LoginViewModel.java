@@ -15,7 +15,7 @@ import com.example.ecnuprevention.webservice.Response;
 import com.example.ecnuprevention.webservice.ResponseData.SignInData;
 import com.example.ecnuprevention.webservice.WebServiceClient;
 
-public class LoginViewModel extends ViewModel implements Callback<Response<SignInData>>{
+public class LoginViewModel implements Callback<Response<SignInData>>{
 
     private Activity activity;
     private MutableLiveData<String> username;

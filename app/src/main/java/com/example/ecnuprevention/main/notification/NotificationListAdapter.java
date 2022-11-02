@@ -1,6 +1,7 @@
 package com.example.ecnuprevention.main.notification;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +16,23 @@ import com.bumptech.glide.Glide;
 import com.example.ecnuprevention.R;
 import com.example.ecnuprevention.webservice.ResponseData.NotificationData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class NotificationListAdapter extends RecyclerView.Adapter<NotificationListAdapter.ItemHolder>{
 
-    Fragment fragment;
-    NotificationData ItemList;
+    private Fragment fragment;
+    private NotificationData itemList;
 
     public NotificationListAdapter(Fragment fragment) {
-        this.ItemList = new NotificationData();
+        this.itemList = new NotificationData();
         this.fragment = fragment;
     }
 
     public void updateData(NotificationData data) {
-        this.ItemList.dataItems.clear();
-        this.ItemList.dataItems.addAll(data.dataItems);
+        this.itemList.dataItems.clear();
+        this.itemList.dataItems.addAll(data.dataItems);
         this.notifyDataSetChanged();
     }
 
@@ -42,7 +46,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-        NotificationData.Item item = ItemList.dataItems.get(position);
+        NotificationData.Item item = itemList.dataItems.get(position);
         holder.text.setText(item.text);
         holder.title.setText(item.title);
         Glide.with(fragment).load(item.imageUrl).into(holder.imageView);
@@ -50,7 +54,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
 
     @Override
     public int getItemCount() {
-        return ItemList.dataItems.size();
+        return itemList.dataItems.size();
     }
 
     static class ItemHolder extends RecyclerView.ViewHolder {

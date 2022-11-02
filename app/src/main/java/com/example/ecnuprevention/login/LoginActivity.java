@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initiate() {
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        loginViewModel = new LoginViewModel(this);
         setBinding();
         setListeners();
     }
