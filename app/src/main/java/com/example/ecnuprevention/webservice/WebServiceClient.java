@@ -2,6 +2,7 @@ package com.example.ecnuprevention.webservice;
 
 import retrofit2.Call;
 
+import com.example.ecnuprevention.webservice.ResponseData.NotificationData;
 import com.example.ecnuprevention.webservice.ResponseData.SignInData;
 
 public class WebServiceClient {
@@ -9,6 +10,10 @@ public class WebServiceClient {
 
     public static Call<Response<SignInData>> SignInWithUsernameAndPassword(String username, String password) {
         return api.SignInWithUsernameAndPassword(username, password);
+    }
+
+    public static Call<Response<NotificationData>> GetNormalNotificationList() {
+        return api.GetNormalNotificationList();
     }
 
 }

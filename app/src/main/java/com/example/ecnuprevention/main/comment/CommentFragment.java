@@ -1,4 +1,4 @@
-package com.example.ecnuprevention;
+package com.example.ecnuprevention.main.comment;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -12,24 +12,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PreservationFragment extends Fragment {
+import com.example.ecnuprevention.R;
 
-    private PreservationViewModel mViewModel;
+public class CommentFragment extends Fragment {
 
-    public static PreservationFragment newInstance() {
-        return new PreservationFragment();
+    private CommentViewModel mViewModel;
+
+    public static CommentFragment newInstance() {
+        return new CommentFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_preservation, container, false);
+        return inflater.inflate(R.layout.fragment_comment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(PreservationViewModel.class);
+        mViewModel = new CommentViewModel(this);
         // TODO: Use the ViewModel
     }
 

@@ -1,21 +1,20 @@
-package com.example.ecnuprevention;
+package com.example.ecnuprevention.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.ecnuprevention.databinding.ActivityLoginBinding;
 
 
 public class LoginActivity extends AppCompatActivity {
 
-    ActivityLoginBinding binding;
-    LoginViewModel loginViewModel;
+    private ActivityLoginBinding binding;
+    private LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initiate() {
-        loginViewModel = new LoginViewModel(this);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         setBinding();
         setListeners();
     }

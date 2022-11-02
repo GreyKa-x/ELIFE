@@ -3,7 +3,7 @@ package com.example.ecnuprevention.webservice;
 
 import android.content.Intent;
 
-import com.example.ecnuprevention.LoginActivity;
+import com.example.ecnuprevention.login.LoginActivity;
 import com.example.ecnuprevention.MyApplication;
 import com.example.ecnuprevention.constants.HttpCode;
 import com.example.ecnuprevention.utilities.uToast;

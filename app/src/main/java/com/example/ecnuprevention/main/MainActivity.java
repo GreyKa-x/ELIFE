@@ -1,15 +1,12 @@
-package com.example.ecnuprevention;
+package com.example.ecnuprevention.main;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.ecnuprevention.databinding.ActivityMainBinding;
-import com.example.ecnuprevention.utilities.uToast;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends FragmentActivity {
@@ -26,7 +23,6 @@ public class MainActivity extends FragmentActivity {
         mainViewModel = new MainViewModel(this);
         setBinding();
         setListeners();
-        mainViewModel.switchFragmentById(0);
     }
 
     private void setListeners() {

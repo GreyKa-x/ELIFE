@@ -1,24 +1,24 @@
-package com.example.ecnuprevention;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
+package com.example.ecnuprevention.main;
 
 import android.view.MenuItem;
 
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModel;
 
-import com.example.ecnuprevention.utilities.uToast;
+import com.example.ecnuprevention.main.comment.CommentFragment;
+import com.example.ecnuprevention.main.preservation.PreservationFragment;
+import com.example.ecnuprevention.R;
+import com.example.ecnuprevention.main.notification.NotificationFragment;
 
 import java.util.ArrayList;
 
-public class MainViewModel extends ViewModel {
+public class MainViewModel {
 
 
     private final FragmentActivity activity;
     private ArrayList<Fragment> fragments;
+    private Integer fragmentNow = 0;
 
     MainViewModel(FragmentActivity activity) {
         this.activity = activity;
@@ -30,6 +30,15 @@ public class MainViewModel extends ViewModel {
         fragments.add(new NotificationFragment());
         fragments.add(new PreservationFragment());
         fragments.add(new CommentFragment());
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container_view, fragments.get(0))
+                .add(R.id.fragment_container_view, fragments.get(1))
+                .add(R.id.fragment_container_view, fragments.get(2))
+                .show(fragments.get(0))
+                .hide(fragments.get(1))
+                .hide(fragments.get(2))
+                .commit();
     }
 
     public Boolean setMenuItemChecked(MenuItem item) {
@@ -52,8 +61,11 @@ public class MainViewModel extends ViewModel {
     public void switchFragmentById(Integer id) {
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container_view, fragments.get(id))
+                .hide(fragments.get(fragmentNow))
+                .show(fragments.get(id))
                 .commit();
+        fragmentNow = id;
+
     }
 
 

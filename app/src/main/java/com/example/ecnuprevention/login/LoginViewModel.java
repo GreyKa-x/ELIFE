@@ -1,8 +1,7 @@
-package com.example.ecnuprevention;
+package com.example.ecnuprevention.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+import com.example.ecnuprevention.main.MainActivity;
 import com.example.ecnuprevention.utilities.uToast;
 import com.example.ecnuprevention.webservice.Response;
 import com.example.ecnuprevention.webservice.ResponseData.SignInData;
@@ -25,6 +25,7 @@ public class LoginViewModel extends ViewModel implements Callback<Response<SignI
         username = new MutableLiveData<>("");
         password = new MutableLiveData<>("");
         this.activity = activity;
+
     }
     public void setPassword(String str) {
         password.setValue(str);
