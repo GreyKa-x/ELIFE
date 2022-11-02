@@ -7,7 +7,7 @@ import retrofit2.http.POST;
 import com.example.ecnuprevention.webservice.ResponseData.SignInData;
 
 public interface WebServiceAPIs {
-    @POST("elife/login")
+    @POST("login")
     @FormUrlEncoded
     Call<Response<SignInData>> SignInWithUsernameAndPassword(@Field("username") String username, @Field("password") String password);
 }

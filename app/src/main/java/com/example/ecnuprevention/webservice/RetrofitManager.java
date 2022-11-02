@@ -32,7 +32,7 @@ public class RetrofitManager {
                             .connectTimeout(Long.parseLong(properties.getProperty("connectTimeout")), TimeUnit.MILLISECONDS)
                             .readTimeout(Long.parseLong(properties.getProperty("readTimeout")), TimeUnit.MILLISECONDS)
                             .writeTimeout(Long.parseLong(properties.getProperty("writeTimeout")), TimeUnit.MILLISECONDS);
-                    // builder.addInterceptor(new LoggingInterceptor());
+                    builder.addInterceptor(new AuthenticationInterceptor());
                     OkHttpClient okHttpClient = builder.build();
 
                     //使用该OkHttpClient创建一个Retrofit对象

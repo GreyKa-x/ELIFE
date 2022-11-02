@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/notification"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ecnu_logo"
+        android:title="通知"/>
+
+    <item android:id="@+id/preservation"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ecnu_logo"
+        android:title="预定"/>
+    <item android:id="@+id/comment"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ecnu_logo"
+        android:title="留言"/>
+</menu>
