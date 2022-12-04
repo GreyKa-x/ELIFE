@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.ecnuprevention.login.LoginActivity;
 import com.example.ecnuprevention.MyApplication;
 import com.example.ecnuprevention.constants.HttpCode;
+import com.example.ecnuprevention.utilities.uDataStore;
 import com.example.ecnuprevention.utilities.uToast;
 
 import java.io.IOException;
@@ -19,13 +20,15 @@ public class AuthenticationInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
-        Log.d("request_url", originalRequest.url().toString());
-        Request updateRequest = originalRequest
-                .newBuilder()
-                .header("app-token", "$2a$10$Kay47GNs8/uaH26e8A01x.ogi9GkBuAVEQ1uNiPv/03ogLTIccRy.")
-                .build();
+        String token = uDataStore.getString("token");
+        Request.Builder requestBuilder = originalRequest.newBuilder();
+        if(token != null) {
+            requestBuilder.header("token", token);
+        }
+        Request updateRequest = requestBuilder.build();
         Response response = chain.proceed(updateRequest);
         if(response.code() == HttpCode.Unauthorized) {
+            uDataStore.delete("token");
             uToast.unauthorized();
             navigateToLoginActivity();
         }

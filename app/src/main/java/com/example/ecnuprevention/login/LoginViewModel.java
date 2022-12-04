@@ -2,6 +2,7 @@ package com.example.ecnuprevention.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 import com.example.ecnuprevention.main.MainActivity;
+import com.example.ecnuprevention.utilities.uDataStore;
 import com.example.ecnuprevention.utilities.uToast;
 import com.example.ecnuprevention.webservice.Response;
 import com.example.ecnuprevention.webservice.ResponseData.SignInData;
@@ -45,12 +47,22 @@ public class LoginViewModel implements Callback<Response<SignInData>>{
         activity.startActivity(intent);
         activity.finish();
     }
+    private void saveToken(retrofit2.Response<Response<SignInData>> response) {
+        String token = response.body().data.token;
+        uDataStore.putString("token", token);
+    }
 
     @Override
     public void onResponse(Call<Response<SignInData>> call, retrofit2.Response<Response<SignInData>> response) {
         if(response.isSuccessful()) {
-            uToast.operationSucceeded();
-            navigateToMainActivity();
+            if(response.body().code == 200) {
+                saveToken(response);
+                uToast.operationSucceeded();
+                navigateToMainActivity();
+            } else {
+                uToast.show(response.body().message);
+            }
+
         } else {
             uToast.show(response.code() + "");
             uToast.serviceFailed();

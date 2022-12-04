@@ -10,10 +10,11 @@ import com.example.ecnuprevention.webservice.ResponseData.NotificationData;
 import com.example.ecnuprevention.webservice.ResponseData.SignInData;
 
 public interface WebServiceAPIs {
-    @POST("login")
+    @POST("user/login")
     @FormUrlEncoded
     Call<Response<SignInData>> SignInWithUsernameAndPassword(@Field("username") String username, @Field("password") String password);
 
     @GET("notification/normal")
     Call<Response<NotificationData>> GetNormalNotificationList();
+
 }

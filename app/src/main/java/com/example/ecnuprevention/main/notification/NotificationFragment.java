@@ -44,7 +44,11 @@ public class NotificationFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         notificationViewModel = new NotificationViewModel(this);
-        // TODO: Use the ViewModel
+        setViews();
+
+    }
+
+    private void setViews() {
         binding.pager.setAdapter(new MainViewPagerAdapter(this, notificationViewModel.getFragments()));
         new TabLayoutMediator(binding.tabLayout, binding.pager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
